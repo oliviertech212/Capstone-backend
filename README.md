@@ -5,7 +5,7 @@ it contain both APIs endpoint that will allow CRUD operations
 # Technologies
  - Package manage: NPM
  - Environment: Nodejs
- - Database: mongobd
+ - Database: mongodb
 # Requirement & installation steps
  - you nee the following to be able to run the application
  Node as javascript runtime environment
