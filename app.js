@@ -3,7 +3,7 @@ import database_connect from "./database.js";
 import cors from "cors";
 import dotenv from "dotenv";
 // access routes
-// import router from "./Routes/post.js";
+import router from "./Routes/contact_message.js";
 
 
 
@@ -16,7 +16,7 @@ dotenv.config();
 database_connect();
 
 // let use route
-// app.use("/contact",router);
+app.use("/contact",router);
 
 
 app.listen(3000,()=>{
