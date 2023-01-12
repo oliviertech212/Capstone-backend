@@ -14,6 +14,32 @@ class Articlecontroller{
             console.log("can not create article"); 
         }
     }
+
+
+    static  async getAll(req,res){
+        try{
+            const article=await
+            Article.find();
+            res.status(201).json({article});
+            
+        }catch{
+            res.status(400).json({ error: error.message });
+            console.log("can not create article"); 
+        }
+    }
+
+    static  async getOne(req,res){
+        try{
+
+             const id=req.params.id;
+            const article=await
+            Article.findById(id);
+            res.status(201).json({article});
+        }catch{
+            res.status(400).json({ error: error.message });
+            console.log("can not create article"); 
+        }
+    }
 }
 
 export default Articlecontroller;
