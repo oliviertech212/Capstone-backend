@@ -1,9 +1,11 @@
 import Express from "express";
-import database_connect from "./database.js";
+import database_connect from "./database";
 import cors from "cors";
 import dotenv from "dotenv";
 // access routes
-import router from "./Routes/contact_message.js";
+import router from "./Routes/contact_message";
+import Article_Route from "./Routes/Article_Route"
+
 
 
 
@@ -15,10 +17,15 @@ dotenv.config();
 
 database_connect();
 
+
+
+
+app.listen(8000,()=>{
+    console.log("server is running on port",8000);
+})
+
 // let use route
 app.use("/contact",router);
 
-
-app.listen(3000,()=>{
-    console.log("server is running on port",3000);
-})
+// routes for Article
+app.use("/articles",Article_Route);
