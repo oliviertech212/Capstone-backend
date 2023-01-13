@@ -1,6 +1,10 @@
 
 
 import mongoose from "mongoose";
+
+
+
+
 const articleSchema = new mongoose.Schema({
     title: {
       type: String,
@@ -10,10 +14,11 @@ const articleSchema = new mongoose.Schema({
       type: String,
       required: true
     }
-    // ,
+    ,
     // image:{
     //   type:String
     // }
+    // comment:commentSchema
   });
   
   const Article = mongoose.model('Article', articleSchema);

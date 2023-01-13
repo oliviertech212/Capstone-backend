@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 // access routes
 import router from "./Routes/contact_message";
 import Article_Route from "./Routes/Article_Route"
+import Comment_Route from "./Routes/comment_route";
 
 
 
@@ -29,3 +30,7 @@ app.use("/contact",router);
 
 // routes for Article
 app.use("/articles",Article_Route);
+
+// comment route
+app.use("/comment",Comment_Route);
+
