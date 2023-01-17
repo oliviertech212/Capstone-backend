@@ -10,7 +10,7 @@ class Articlecontroller{
             res.status(201).json({article});
             console.log("article now is created");
         }catch{
-            res.status(400).json({ error: error.message }); 
+            res.status(400).json({ error: error.message });
             console.log("can not create article"); 
         }
     }
