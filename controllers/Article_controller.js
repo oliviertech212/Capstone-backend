@@ -7,10 +7,11 @@ class Articlecontroller{
         try{
             const article=await
             Article.create(req.body);
+            
             res.status(201).json({article});
             console.log("article now is created");
         }catch{
-            res.status(400).json({ error: error.message });
+            // res.status(400).json({ error: error.message });
             console.log("can not create article"); 
         }
     }
@@ -38,6 +39,37 @@ class Articlecontroller{
         }catch{
             res.status(400).json({ error: error.message });
             console.log("can not create article"); 
+        }
+    }
+
+    static async update (req, res){
+        try {
+            const id = req.params.id;
+            const updatedData = req.body;
+            const options = { new: true };
+    
+            const result = await Article.findByIdAndUpdate(
+                id, updatedData, options
+            )
+    
+            res.send(result)
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message })
+        }
+    }
+
+
+    static async delete (req, res){
+        try {
+            const id = req.params.id;
+
+            const result = await Article.deleteOne({id})
+    
+            res.send(result)
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message })
         }
     }
 }

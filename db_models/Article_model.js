@@ -10,6 +10,10 @@ const articleSchema = new mongoose.Schema({
       type: String,
       required: true
     }
+    // ,
+    // image:{
+    //   type:String
+    // }
   });
   
   const Article = mongoose.model('Article', articleSchema);
