@@ -38,10 +38,10 @@ app.use("/articles", Comment_Route);
 // user route
 // Initialize Passport.js
 // app.use(passport.initialize());
-// app.use("/user", User_roure);
+app.use("/user", User_roure);
 // secure route
 // app.use("/adm", passport.authenticate("jwt", { session: false }), securerouter);
-// app.use("/adm", User_roure);
+app.use("/adm", User_roure);
 
 app.use((req, res) => {
   res.json({ success: "error", message: "route not found" });
