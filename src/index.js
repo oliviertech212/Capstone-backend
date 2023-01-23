@@ -10,8 +10,11 @@ import Article_Route from "./Routes/Article_Route";
 import Comment_Route from "./Routes/comment_route";
 import User_roure from "./Routes/User_route";
 // import auth for use passport local startegy
-// import "./auth/auth";
+
 import securerouter from "./Routes/secure-routes";
+
+// import auth for use passport google startegy
+import OAuth_Route from "./Routes/OAuthroute";
 
 const app = Express();
 app.use(cors());
@@ -39,10 +42,16 @@ app.use("/articles", Comment_Route);
 // Initialize Passport.js
 // app.use(passport.initialize());
 app.use("/user", User_roure);
+app.use("/admin", securerouter);
 // secure route
 // app.use("/adm", passport.authenticate("jwt", { session: false }), securerouter);
 app.use("/adm", User_roure);
 
+// oauth with google
+app.use("/", OAuth_Route);
+
 app.use((req, res) => {
   res.json({ success: "error", message: "route not found" });
 });
+
+export default app;
