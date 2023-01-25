@@ -16,6 +16,9 @@ import securerouter from "./Routes/secure-routes";
 // import auth for use passport google startegy
 import OAuth_Route from "./Routes/OAuthroute";
 
+import Swaggerui from "swagger-ui-express";
+import document from "./user";
+
 const app = Express();
 app.use(cors());
 app.use(Express.json());
@@ -49,6 +52,9 @@ app.use("/adm", User_roure);
 
 // oauth with google
 app.use("/", OAuth_Route);
+
+// swagger
+app.use("/api-docs", Swaggerui.serve, Swaggerui.setup(document));
 
 app.use((req, res) => {
   res.json({ success: "error", message: "route not found" });

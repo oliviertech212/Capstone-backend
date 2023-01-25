@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=text --reporter=html --reporter=json-summary mocha --recursive --exit --timeout 4000 --require @babel/register src/test/**/*.js",
     "build": "babel ./src/index.js -d build",
-    "start": "nodemon --exec babel-node src"
+    "start": "nodemon --exec babel-node src",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,9 @@
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
