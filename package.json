@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc mocha --recursive --exit --require @babel/register src/test/**/*.js",
     "build": "babel ./src/index.js -d build",
-    "start": "nodemon --exec babel-node src"
+     "start": "babel-node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
   },
   "repository": {
     "type": "git",
