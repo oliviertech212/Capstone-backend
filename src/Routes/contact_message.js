@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import User from "../db_models/contact_message";
 import { Model } from "mongoose";
 import { contactValidation } from "../middleware/contact_validation";
+import UserController from "../controllers/User_controller";
 
 const router = Express.Router();
 
@@ -22,7 +23,7 @@ router.post("/post", contactValidation, async (req, res) => {
   }
 });
 
-router.get("/getall", async (req, res) => {
+router.get("/getall", UserController.authenticat, async (req, res) => {
   try {
     const Users = await User.find();
     res.status(200).json(Users);
@@ -42,22 +43,22 @@ router.get("/getOne/:id", async (req, res) => {
 });
 
 //Update by ID Method
-router.patch("/update/:id", contactValidation, async (req, res) => {
-  try {
-    const id = req.params.id;
-    const updatedData = req.body;
-    const options = { new: true };
+// router.patch("/update/:id", contactValidation, async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const updatedData = req.body;
+//     const options = { new: true };
 
-    const result = await User.findByIdAndUpdate(id, updatedData, options);
+//     const result = await User.findByIdAndUpdate(id, updatedData, options);
 
-    res.send(result);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+//     res.send(result);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 
 //Delete by ID Method
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", UserController.authenticat, async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);

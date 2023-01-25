@@ -9,6 +9,7 @@ const Article_Route = express.Router();
 // UserController.authenticat
 Article_Route.post(
   "/post",
+  UserController.authenticat,
   Article_validation,
   upload.single("image"),
   Articlecontroller.create
@@ -17,9 +18,14 @@ Article_Route.get("/getall", Articlecontroller.getAll);
 Article_Route.get("/getall/:id", Articlecontroller.getOne);
 Article_Route.patch(
   "/update/:id",
+  UserController.authenticat,
   Article_validation,
   Articlecontroller.update
 );
-Article_Route.delete("/delete/:id", Articlecontroller.delete);
+Article_Route.delete(
+  "/delete/:id",
+  UserController.authenticat,
+  Articlecontroller.delete
+);
 
 export default Article_Route;
