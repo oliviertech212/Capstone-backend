@@ -2,26 +2,8 @@ import UserSignup from "../db_models/User_model";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-class UserController {
-  // static async createUser(req, res) {
-  //   try {
-  //     const data = new User({
-  //       username: req.body.username,
-  //       password: req.body.password,
-  //     });
-  //     await data.save();
-  //     successRes(res, {
-  //       posts: [{ id: 1, title: "A blog post", body: "Some useful content" }],
-  //     });
-
-  //     //   res.status(201).json(data);
-  //     //   console.log("User saved");
-  //   } catch (error) {
-  //     res.status(401).json(error.message);
-  //     console.log("it can not create user");
-  //   }
-  // }
-  static async signup(req, res) {
+class AdminController {
+  static async cereateadmin(req, res) {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -29,11 +11,13 @@ class UserController {
       const newUser = new UserSignup({
         username: req.body.username,
         password: hashedPassword,
+        role: "admin",
       });
       //save user to the database
       const savedUser = await newUser.save();
+      // for save use
       req.user = savedUser;
-      res.status(201).json(savedUser);
+      res.status(201).json({ status: "success", post: savedUser });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -98,53 +82,6 @@ class UserController {
       res.status(401).send({ error: "Unauthorized" });
     }
   };
-
-  // Only authenticated users with a valid JWT token can access this route
-  static async authenticate(req, res, next) {
-    // Get the token from the header
-    const token = req.headers.authorization;
-
-    // Check if token is present
-    if (!token) {
-      return res
-        .status(401)
-        .json({ message: "Access denied. No token provided." });
-    }
-
-    // Verify the token
-    try {
-      const decoded = jwt.verify(token, process.env.MY_SCRET);
-      req.user = decoded;
-      const user = await UserSignup.findOne({ _id: decoded.id });
-      // Send the user's information in the response
-      res.send(user);
-      next();
-      console.log(decoded);
-    } catch (error) {
-      return res.status(400).json({ message: "Invalid token." });
-    }
-  }
-
-  // static async getUser(req, res) {
-  //   try {
-  //     const users = await User.find();
-  //     res.status(201).json(users);
-  //   } catch (error) {
-  //     res.status(401).json(error.message);
-  //     console.log("it can not find user");
-  //   }
-  // }
-
-  // static async getOne(req, res) {
-  //   try {
-  //     const id = req.params.id;
-  //     const user = await User.findOne({ id });
-  //     res.status(201).json(user);
-  //   } catch (error) {
-  //     res.status(401).json(error.message);
-  //     console.log("it can not find user");
-  //   }
-  // }
 }
 
-export default UserController;
+export default AdminController;

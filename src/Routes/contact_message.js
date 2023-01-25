@@ -7,36 +7,47 @@ import UserController from "../controllers/User_controller";
 
 const router = Express.Router();
 
-router.post("/post", contactValidation, async (req, res) => {
+// router.post("/post", contactValidation, async (req, res) => {
+//   try {
+//     const data = new User({
+//       name: req.body.name,
+//       email: req.body.email,
+//       message: req.body.message,
+//     });
+//     await data.save();
+//     res.status(201).json(data);
+//     console.log("msg sent sussfuly");
+//   } catch (error) {
+//     res.status(401).json(error.message);
+//     console.log("it can not create user");
+//   }
+// });
+
+router.post("/post", async (req, res) => {
   try {
-    const data = new User({
-      name: req.body.name,
-      email: req.body.email,
-      message: req.body.message,
-    });
-    await data.save();
-    res.status(201).json(data);
-    console.log("msg sent sussfuly");
+    const { name, email, message } = req.body;
+    const contact = new User({ name, email, message });
+    await contact.save();
+    res.status(201).json(contact);
   } catch (error) {
-    res.status(401).json(error.message);
-    console.log("it can not create user");
+    res.status(500).json({ success: "error", message: error.message });
   }
 });
 
 router.get("/getall", UserController.authenticat, async (req, res) => {
   try {
-    const Users = await User.find();
-    res.status(200).json(Users);
+    const contact = await User.find();
+    res.status(200).json(contact);
   } catch (error) {
     res.status(400).json(error.message);
   }
 });
 
 //Get by ID Method
-router.get("/getOne/:id", async (req, res) => {
+router.get("/getOne/:id", UserController.authenticat, async (req, res) => {
   try {
     const data = await User.findById(req.params.id);
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
