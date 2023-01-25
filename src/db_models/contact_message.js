@@ -1,27 +1,23 @@
-
-
 import mongoose from "mongoose";
 
 const dataSchema = new mongoose.Schema({
-    name: {
-        required: true,
-        type: String
-    },
-    email: {
-        required: true,
-        type: String
-    },
-    message: {
-        required:true,
-        type: String
-    }
+  name: {
+    // required: true,
+    type: String,
+  },
+  email: {
+    // required: true,
+    type: String,
+  },
+  message: {
+    // required:true,
+    type: String,
+  },
+});
 
-})
-
-const User = mongoose.model('Message', dataSchema);
+const User = mongoose.model("Message", dataSchema);
 
 export default User;
-
 
 // import mongoose from "mongoose";
 
@@ -39,7 +35,6 @@ export default User;
 //          type: String
 //      }
 // })
-
 
 // const User=mongoose.model("Users",schema);
 
