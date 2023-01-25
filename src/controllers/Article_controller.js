@@ -25,7 +25,7 @@ class Articlecontroller {
         title: req.body.title,
       });
       await article.save();
-      res.status(201).json({ article: article });
+      res.status(200).json({ article: article });
       console.log("article now is created");
     } catch (error) {
       res.status(400).json({ status: "error", message: error.message });
@@ -36,7 +36,7 @@ class Articlecontroller {
   static async getAll(req, res) {
     try {
       const article = await Article.find();
-      res.status(201).json({ article });
+      res.status(200).json({ article });
     } catch (error) {
       res.status(400).json({ error: error.message });
       console.log("can not create article");
@@ -47,7 +47,7 @@ class Articlecontroller {
     try {
       const id = req.params.id;
       const article = await Article.findById(id);
-      res.status(201).json({ article });
+      res.status(200).json({ article });
     } catch {
       res.status(400).json({ error: error.message });
       console.log("can not create article");

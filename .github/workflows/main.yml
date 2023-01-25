@@ -1,0 +1,30 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Generate code coverage report
+        run: npx nyc report --reporter=json-summary
+      - name: Update coverage badge
+        run: |
+          npm install shelljs
+          npm install fs
+          var shell = require("shelljs");
+          var fs = require("fs");
+          var coverage = shell.exec("npx nyc report --reporter=text-summary | grep 'Statements' | awk '{print $3}'").stdout;
+          var readme = fs.readFileSync("README.md", "utf8");
+          var newBadge = `[![Coverage](https://img.shields.io/badge/coverage-${coverage}-brightgreen)](https://img.shields.io/badge/coverage-${coverage}-brightgreen)`;
+          var newReadme = readme.replace(/!\[check-code-coverage\]\(https:\/\/img.shields.io\/badge\/code--coverage-[0-9]*\.[0-9]*%25-yellow\)/, newBadge);
+
+          fs.writeFileSync("README.md", newReadme);

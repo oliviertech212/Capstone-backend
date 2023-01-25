@@ -1,5 +1,4 @@
-// upload image
-import multer from "multer"; // for handling image upload
+import multer from "multer";
 import path from "path";
 
 const upload = multer({

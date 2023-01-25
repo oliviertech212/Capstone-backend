@@ -29,6 +29,8 @@ beforeEach(async () => {
 
   const res = await chai.request(app).post("/user/login").send(user);
   token = res.body.token;
+
+  console.log("totkenenenen", token);
 });
 
 describe("user APi", () => {
@@ -42,7 +44,6 @@ describe("user APi", () => {
     res.body.should.be.an("object");
     res.body.should.have.property("username", "oliviertech");
     res.body.should.have.property("password").that.matches(/^\$2b\$10\$/);
-    // res.body.should.have.property("password", "oliviertech");
   });
 
   it("it should log user in", async () => {
@@ -57,6 +58,26 @@ describe("user APi", () => {
     res.body.should.have.property("token");
     res.body.should.have.property("auth", true);
     console.log(token);
+  });
+
+  it("it should get user profile", async () => {
+    // Log the user in first
+    const user = {
+      username: "oliviertech27@gmail.com",
+      password: "oliviertech",
+    };
+    const loginRes = await chai.request(app).post("/user/login").send(user);
+    token = loginRes.body.token; // Save the token for use in the next request
+
+    // Make the GET request to the user profile endpoint
+    const profileRes = await chai
+      .request(app)
+      .get("/user/profile")
+      .set("Authorization", `Bearer ${token}`);
+    profileRes.should.have.status(200);
+    profileRes.body.should.be.an("object");
+    profileRes.body.should.have.property("username", "oliviertech27@gmail.com");
+    profileRes.body.should.have.property("_id");
   });
 });
 
