@@ -2,10 +2,11 @@
   "name": "capstone-backend",
   "version": "1.0.0",
   "description": "this is my capstone backend",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=text --reporter=html --reporter=json-summary mocha --recursive --exit --timeout 4000 --require @babel/register src/test/**/*.js"
     "start": "babel-node src/index.js",
+    "build": "babel src -d dist",
     "dev": "nodemon --exec babel-node src/index.js"
 
   },
