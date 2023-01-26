@@ -1,7 +1,5 @@
 import Express from "express";
-import mongoose from "mongoose";
 import User from "../db_models/contact_message";
-import { Model } from "mongoose";
 import { contactValidation } from "../middleware/contact_validation";
 import UserController from "../controllers/User_controller";
 
@@ -25,7 +23,7 @@ const router = Express.Router();
 
 /**
  * @swagger
- * /post:
+ * /contact/post:
  *   post:
  *     tags:
  *       - contact-message
@@ -35,19 +33,19 @@ const router = Express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Data'
+ *             $ref: '#/components/schemas/contactmessages'
  *     responses:
  *       "201":
- *         description: Successfully created post
+ *         description: message sent Successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/DataResponse'
+ *               $ref: '#/components/schemas/contactmessages'
  *       "500":
  *         description: Internal server error
  */
 
-router.post("/post", async (req, res) => {
+router.post("/post", contactValidation, async (req, res) => {
   try {
     const { name, email, message } = req.body;
     const contact = new User({ name, email, message });
@@ -59,8 +57,29 @@ router.post("/post", async (req, res) => {
 });
 
 /**
+//  * @swagger
+//  * /contact/getall:
+//  *   get:
+//  *     tags:
+//  *       - contact-message
+//  *     summary: Get all post
+//  *     security:
+//  *       - bearerAuth: []
+//  *     responses:
+//  *       "200":
+//  *         description: Successfully retrieved all posts
+//  *         content:
+//  *           application/json:
+//  *             schema:
+//  *               type: array
+//  *               items:
+//  *                 $ref: '#/components/schemas/contactmessages'
+//  *       "400":
+//  *         description: Bad request
+//  */
+/**
  * @swagger
- * /getall:
+ * /contact/getall:
  *   get:
  *     tags:
  *       - contact-message
@@ -75,7 +94,7 @@ router.post("/post", async (req, res) => {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/DataResponse'
+ *                 $ref: '#/components/schemas/contactmessages'
  *       "400":
  *         description: Bad request
  */
@@ -89,9 +108,37 @@ router.get("/getall", UserController.authenticat, async (req, res) => {
   }
 });
 
+// /**
+//  * @swagger
+//  * /contact/getOne/{id}:
+//  *   get:
+//  *     tags:
+//  *       - contact-message
+//  *     summary: Get a single post by ID
+//  *     parameters:
+//  *       - in: path
+//  *         name: id
+//  *         required: true
+//  *         schema:
+//  *           type: string
+//  *     security:
+//  *       - bearerAuth: []
+//  *     responses:
+//  *       "200":
+//  *         description: Successfully retrieved post by ID
+//  *         content:
+//  *           application/json:
+//  *             schema:
+//  *               $ref: '#/components/schemas/contactmessages'
+//  *       "404":
+//  *         description: Post not found
+//  *       "500":
+//  *         description: Internal server error
+//  */
+
 /**
  * @swagger
- * /getOne/{id}:
+ * /contact/getOne/{id}:
  *   get:
  *     tags:
  *       - contact-message
@@ -110,7 +157,7 @@ router.get("/getall", UserController.authenticat, async (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/DataResponse'
+ *               $ref: '#/components/schemas/contactmessages'
  *       "404":
  *         description: Post not found
  *       "500":
@@ -127,24 +174,9 @@ router.get("/getOne/:id", UserController.authenticat, async (req, res) => {
   }
 });
 
-//Update by ID Method
-// router.patch("/update/:id", contactValidation, async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const updatedData = req.body;
-//     const options = { new: true };
-
-//     const result = await User.findByIdAndUpdate(id, updatedData, options);
-
-//     res.send(result);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// });
-
 /**
  * @swagger
- * /delete/{id}:
+ * /contact/delete/{id}:
  *   delete:
  *     tags:
  *       - contact-message
@@ -155,11 +187,13 @@ router.get("/getOne/:id", UserController.authenticat, async (req, res) => {
  *         required: true
  *         schema:
  *           type: string
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       "200":
  *         description: Successfully deleted post by ID
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/contactmessages'
  *       "404":
  *         description: Post not found
  *       "400":
@@ -167,10 +201,10 @@ router.get("/getOne/:id", UserController.authenticat, async (req, res) => {
  */
 
 //Delete by ID Method
-router.delete("/delete/:id", UserController.authenticat, async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await Model.findByIdAndDelete(id);
+    const data = await User.findByIdAndDelete(id);
     res.send(`Document with ${data.name} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });

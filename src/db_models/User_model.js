@@ -9,7 +9,13 @@ import findOrCreatePlugin from "mongoose-findorcreate";
  *   schemas:
  *     signup:
  *       type: object
+ *       required:
+ *         -username
+ *         -password
  *       properties:
+ *         id:
+ *           type: string
+ *           description: the auto generated id
  *         username:
  *           type: string
  *           default: oliviertech
@@ -18,6 +24,9 @@ import findOrCreatePlugin from "mongoose-findorcreate";
  *           type: string
  *           default: oliviertech
  *           required: true
+ *         createdAt:
+ *            type: string
+ *            format: date
  *     Response:
  *       type: object
  *       properties:

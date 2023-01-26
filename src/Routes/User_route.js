@@ -1,12 +1,13 @@
 import Express from "express";
 // import passport from "passport";
 import UserController from "../controllers/User_controller";
+import userValidationSchema from "../validation/usemodel";
 
 const User_router = Express.Router();
 
 /**
  * @swagger
- * /signup:
+ * /user/signup:
  *   post:
  *     tags:
  *       - User
@@ -23,7 +24,7 @@ const User_router = Express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Response'
+ *               $ref: '#/components/schemas/signup'
  *       400:
  *         description: Bad Request
  */
@@ -32,7 +33,7 @@ User_router.post("/signup", UserController.signup);
 
 /**
  * @swagger
- * /login:
+ * /user/login:
  *   post:
  *     tags:
  *       - User
@@ -62,6 +63,26 @@ User_router.post("/signup", UserController.signup);
  */
 User_router.post("/login", UserController.login);
 // to get user
+
+/**
+ * @swagger
+ * /user/profile:
+ *   get:
+ *     tags:
+ *       - User
+ *     summary: Get user's profile information
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       "200":
+ *         description: Successfully retrieved user's profile
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Response'
+ *       "401":
+ *         description: Unauthorized
+ */
 
 User_router.get("/profile", UserController.getProfile);
 // (req, res) => {

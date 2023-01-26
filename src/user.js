@@ -13,11 +13,16 @@ const options = {
         url: "dfggggggggggggdff",
       },
     },
+    servers: [
+      {
+        url: "http://localhost:8000",
+      },
+    ],
     components: {
       securitySchemes: {
-        token: {
+        bearerAuth: {
           type: "http",
-          schema: "bearer",
+          scheme: "bearer",
           bearerFormat: "JWT",
         },
       },

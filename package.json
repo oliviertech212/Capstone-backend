@@ -6,8 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=text --reporter=html --reporter=json-summary mocha --recursive --exit --timeout 4000 --require @babel/register src/test/**/*.js",
     "build": "babel ./src/index.js -d build",
-    "start": "nodemon --exec babel-node src",
-    "lint": "eslint ."
+    "start": "babel-node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js"
   },
   "repository": {
     "type": "git",
