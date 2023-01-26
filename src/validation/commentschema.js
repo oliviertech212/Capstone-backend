@@ -1,8 +1,7 @@
 import Joi from "joi";
 const commentValidationSchema = Joi.object({
-  username: Joi.string().email().required().label("Email"),
-  comment: Joi.string().required().label("Comment"),
-  article: Joi.string().label("Article ID"),
+  username: Joi.string().email().label("username"),
+  comment: Joi.string().label("Comment"),
 });
 
 export default commentValidationSchema;

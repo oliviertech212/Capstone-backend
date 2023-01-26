@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 class AdminController {
-  static async cereateadmin(req, res) {
+  static async createadmin(req, res) {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);

@@ -12,7 +12,7 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     quotes: "off",
-    avoidEscape: true,
+    avoidEscape: 1,
     allowTemplateLiterals: true,
   },
   plugins: ["prettier"],

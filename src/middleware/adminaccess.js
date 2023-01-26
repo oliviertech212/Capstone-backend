@@ -2,14 +2,13 @@ import UserSignup from "../db_models/User_model";
 
 export const admin = async (req, res, next) => {
   try {
-    const user = await UserSignup.find({
-      // _id: req.user._id,
-      // _id: req.newUser._id,
+    const User = await UserSignup.findOne({
+      _id: req.user._id,
       role: "admin",
     });
-    req.user = user;
-    console.log(user);
-    if (!user) {
+    // req.user = User;
+    console.log(User);
+    if (!User) {
       return res
         .status(401)
         .json({ status: "error", message: "only admin allowed" });
