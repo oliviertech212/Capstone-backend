@@ -8,6 +8,7 @@
     "build": "babel ./src/index.js -d build",
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js"
+
   },
   "repository": {
     "type": "git",
