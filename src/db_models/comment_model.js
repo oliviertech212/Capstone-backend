@@ -1,5 +1,30 @@
 import mongoose from "mongoose";
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     commentmessages:
+ *       type: object
+ *       required:
+ *         - username
+ *         - comment
+ *         - article
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the message
+ *         username:
+ *           type: string
+ *         comment:
+ *           type: string
+ *         article:
+ *         createdAt:
+ *           type: string
+ *           format: date
+ *           description: The date for the message
+ */
+
 const commentSchema = mongoose.Schema({
   username: {
     type: String,

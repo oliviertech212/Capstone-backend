@@ -5,8 +5,8 @@ const userValidationSchema = Joi.object({
     .min(3)
     .max(30)
     .required()
-    .unique()
-    .label("Username"),
+    // .unique()
+    .label("username"),
   password: Joi.string().min(8).required().label("Password"),
 });
 

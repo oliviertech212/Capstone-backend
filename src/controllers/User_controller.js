@@ -39,6 +39,29 @@ class UserController {
     }
   }
 
+  // static createuser = async (req, res) => {
+  //   try {
+  //     const { email, password } = req.body;
+  //     const salt = await bcrypt.hash(password, 10);
+  //     const signup = new UserSignup({
+  //       email,
+  //       password: salt,
+  //     });
+  //     const registered = await UserSignup.findOne({ email: signup.email });
+  //     if (registered) {
+  //       return res
+  //         .status(400)
+  //         .json({ status: "user not created", message: "user exist" });
+  //     }
+  //     const user = await signup.save();
+  //     return res.status(200).json({ status: "success", message: user });
+  //   } catch (error) {
+  //     return res
+  //       .status(400)
+  //       .json({ status: "errormessage", message: error.message });
+  //   }
+  // };
+
   static async login(req, res) {
     try {
       // Find the user in the database

@@ -3,12 +3,14 @@ import passport from "passport";
 import AdminController from "../controllers/admin";
 const securerouter = express.Router();
 
+import { authorized } from "../middleware/authentication";
+
 import { admin, findUserById } from "../middleware/adminaccess";
 import UserSignup from "../db_models/User_model";
 
 console.log(admin);
 
-securerouter.post("/admin", AdminController.cereateadmin);
+securerouter.post("/admin", AdminController.createadmin);
 
 // securerouter.get("/profile/:id", findUserById, admin, (req, res) => {
 //   res.json(req.user);
@@ -38,7 +40,7 @@ securerouter.get("/profile", admin, (req, res) => {
 //     console.log("admin found");
 //   }
 // );
-securerouter.get("/admin", AdminController.cereateadmin, (req, res, next) => {
+securerouter.get("/admin", AdminController.createadmin, (req, res) => {
   res.json({
     message: "You made it to the secure route",
     user: req.user,
