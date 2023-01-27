@@ -2,7 +2,6 @@ import Express from "express";
 import UserController from "../controllers/User_controller";
 import CommentController from "../controllers/comment_controller";
 import { commentValidation } from "../middleware/comment_validation";
-import AdminController from "../controllers/admin";
 import { admin } from "../middleware/adminaccess";
 const Comment_Route = Express.Router();
 
