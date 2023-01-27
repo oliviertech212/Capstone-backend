@@ -40,12 +40,10 @@ class CommentController {
       const updateArticle = await Article.findById(req.params.id).populate(
         "comments"
       );
-      return res.send(updateArticle);
-      // res.json({ status: "error", message: "Article not found" });
-      res.status(201).json(comment);
+      res.status(201).json({ status: "success", comment: updateArticle });
       console.log("comment sent sussfuly");
     } catch (error) {
-      res.status(401).json(error.message);
+      res.status(401).json({ error: error.message });
       console.log("coment not sent");
     }
   }
@@ -77,7 +75,7 @@ class CommentController {
 
       const result = await Comment.deleteOne({ id });
 
-      res.send(result);
+      res.status(200).json({ status: "success", deleted: result });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

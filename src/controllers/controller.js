@@ -1,5 +1,3 @@
-// import User from "../models/post";
-// import user from "../models/post";
 import Model from "../db_models/contact_message";
 import User from "../db_models/contact_message";
 

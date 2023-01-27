@@ -84,8 +84,6 @@ router.post("/post", contactValidation, async (req, res) => {
  *     tags:
  *       - contact-message
  *     summary: Get all post
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       "200":
  *         description: Successfully retrieved all posts
@@ -99,14 +97,18 @@ router.post("/post", contactValidation, async (req, res) => {
  *         description: Bad request
  */
 
-router.get("/getall", UserController.authenticat, async (req, res) => {
-  try {
-    const contact = await User.find();
-    res.status(200).json(contact);
-  } catch (error) {
-    res.status(400).json(error.message);
+router.get(
+  "/getall",
+  //  UserController.authenticat,
+  async (req, res) => {
+    try {
+      const contact = await User.find();
+      res.status(200).json(contact);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
   }
-});
+);
 
 // /**
 //  * @swagger
@@ -149,8 +151,6 @@ router.get("/getall", UserController.authenticat, async (req, res) => {
  *         required: true
  *         schema:
  *           type: string
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       "200":
  *         description: Successfully retrieved post by ID
@@ -165,14 +165,18 @@ router.get("/getall", UserController.authenticat, async (req, res) => {
  */
 
 //Get by ID Method
-router.get("/getOne/:id", UserController.authenticat, async (req, res) => {
-  try {
-    const data = await User.findById(req.params.id);
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+router.get(
+  "/getOne/:id",
+  //  UserController.authenticat
+  async (req, res) => {
+    try {
+      const data = await User.findById(req.params.id);
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   }
-});
+);
 
 /**
  * @swagger

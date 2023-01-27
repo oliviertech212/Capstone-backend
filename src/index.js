@@ -17,7 +17,7 @@ import securerouter from "./Routes/secure-routes";
 import OAuth_Route from "./Routes/OAuthroute";
 
 import Swaggerui from "swagger-ui-express";
-import document from "./user";
+import document from "./swagger";
 
 const app = Express();
 app.use(cors());
@@ -47,7 +47,6 @@ app.use("/articles", Comment_Route);
 app.use("/user", User_roure);
 app.use("/admin", securerouter);
 // secure route
-// app.use("/adm", passport.authenticate("jwt", { session: false }), securerouter);
 app.use("/adm", User_roure);
 
 // oauth with google

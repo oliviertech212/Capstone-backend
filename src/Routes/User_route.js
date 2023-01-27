@@ -64,29 +64,4 @@ User_router.post("/signup", UserController.signup);
 User_router.post("/login", UserController.login);
 // to get user
 
-/**
- * @swagger
- * /user/profile:
- *   get:
- *     tags:
- *       - User
- *     summary: Get user's profile information
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       "200":
- *         description: Successfully retrieved user's profile
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Response'
- *       "401":
- *         description: Unauthorized
- */
-
-User_router.get("/profile", UserController.getProfile);
-// (req, res) => {
-// Only authenticated users with a valid JWT token can access this route
-// });
-
 export default User_router;

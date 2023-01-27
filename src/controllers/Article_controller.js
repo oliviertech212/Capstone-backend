@@ -1,17 +1,6 @@
 import Article from "../db_models/Article_model";
 import cloudinary from "../helper/cloudinary";
 
-// import dotenv from "dotenv";
-// dotenv.config();
-// import cloudinary from "cloudinary";
-// const { API_KEY, API_SECRET, NAME } = process.env;
-
-// cloudinary.config({
-//   cloud_name: NAME,
-//   api_key: API_KEY,
-//   api_secret: API_SECRET,
-// });
-
 class Articlecontroller {
   static async create(req, res) {
     try {
@@ -25,7 +14,7 @@ class Articlecontroller {
         title: req.body.title,
       });
       await article.save();
-      res.status(200).json({ article: article });
+      res.status(200).json({ status: "success", article: article });
       console.log("article now is created");
     } catch (error) {
       res.status(400).json({ status: "error", message: error.message });
@@ -36,9 +25,9 @@ class Articlecontroller {
   static async getAll(req, res) {
     try {
       const article = await Article.find();
-      res.status(200).json({ article });
+      res.status(200).json({ status: "success", article: article });
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ status: "error", error: error.message });
       console.log("can not create article");
     }
   }
@@ -47,8 +36,8 @@ class Articlecontroller {
     try {
       const id = req.params.id;
       const article = await Article.findById(id);
-      res.status(200).json({ article });
-    } catch {
+      res.status(200).json({ status: "success", article: article });
+    } catch (error) {
       res.status(400).json({ error: error.message });
       console.log("can not create article");
     }
@@ -111,7 +100,7 @@ class Articlecontroller {
 
       const result = await Article.deleteOne({ id });
 
-      res.send(result);
+      res.status(200).json({ status: "success", deleted: result });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

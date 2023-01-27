@@ -8,10 +8,7 @@ import { admin } from "../middleware/adminaccess";
 import { findUserById } from "../middleware/adminaccess";
 import AdminController from "../controllers/admin";
 
-import { authorized } from "../middleware/authentication";
-
 const Article_Route = express.Router();
-// UserController.authenticat
 
 /**
  * @swagger
@@ -21,6 +18,8 @@ const Article_Route = express.Router();
  *     tags:
  *       - Article
  *     summary: Create a new article
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -42,8 +41,6 @@ const Article_Route = express.Router();
  *     tags:
  *       - Article
  *     summary: Retrieve all articles
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved all articles
@@ -60,7 +57,7 @@ const Article_Route = express.Router();
  *       - Article
  *     summary: Get a single post by ID
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -85,7 +82,7 @@ const Article_Route = express.Router();
  *        - Article
  *     summary: Delete a single post by ID
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -109,7 +106,7 @@ const Article_Route = express.Router();
  *       - Article
  *     summary: Update an existing article
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -136,6 +133,7 @@ const Article_Route = express.Router();
 
 Article_Route.post(
   "/post",
+  UserController.authenticat,
   Article_validation,
   upload.single("image"),
   Articlecontroller.create
