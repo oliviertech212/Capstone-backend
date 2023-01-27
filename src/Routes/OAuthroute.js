@@ -4,36 +4,19 @@ import passport from "../auth/OAuth";
 
 const OAuth_Route = Express.Router();
 
-// OAuth_Route.get(
-//   "/auth/google/Capstone",
-//   passport.authenticate("google", { scope: ["profile"] }),
-//   (req, res) => {
-//     res.json({ message: "now you're good to go" });
-//     console.log(`Error: ${err}`);
-//   }
-// );
-
-// OAuth_Route.get(
-//   "/auth/google",
-//   passport.authenticate("google", { scope: ["profile"] })
-// );
-
-// OAuth_Route.get(
-//   "/auth/google/Capstone",
-//   passport.authenticate("google", { failureRedirect: "/login" }),
-//   function (req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect("/");
-//   }
-// );
-
-// OAuth_Route.get("/", function (req, res) {
-//   if (req.user) {
-//     res.send("Hello " + req.user.displayName);
-//   } else {
-//     res.send("Please login");
-//   }
-// });
+/**
+ * @swagger
+ * /auth/google:
+ *   get:
+ *     tags:
+ *       - OAuth
+ *     summary: Authenticate with Google
+ *     responses:
+ *       302:
+ *         description: Redirect to Google's authentication page
+ *       401:
+ *         description: Unauthorized - Authentication failed
+ */
 
 OAuth_Route.get(
   "/auth/google",
@@ -43,6 +26,17 @@ OAuth_Route.get(
   })
 );
 
+/**
+ * @swagger
+ * /auth/google/failure:
+ *   get:
+ *     tags:
+ *       - OAuth
+ *     summary: Handle Google authentication failure
+ *     responses:
+ *       401:
+ *         description: Unauthorized - Google authentication failed
+ */
 OAuth_Route.get("/auth/google/failure", function (req, res) {
   res
     .status(401)

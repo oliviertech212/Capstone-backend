@@ -1,5 +1,29 @@
 import mongoose from "mongoose";
 
+// /**
+//  * @swagger
+//  * components:
+//  *   schemas:
+//  *     commentmessages:
+//  *       type: object
+//  *       required:
+//  *         - username
+//  *         - comment
+//  *       properties:
+//  *         id:
+//  *           type: string
+//  *           description: The auto-generated id of the message
+//  *         username:
+//  *           type: string
+//  *         comment:
+//  *           type: string
+//  *         article:
+//  *         createdAt:
+//  *           type: string
+//  *           format: date
+//  *           description: The date for the message
+//  */
+
 /**
  * @swagger
  * components:
@@ -9,20 +33,23 @@ import mongoose from "mongoose";
  *       required:
  *         - username
  *         - comment
- *         - article
  *       properties:
  *         id:
  *           type: string
- *           description: The auto-generated id of the message
+ *           description: The auto-generated id of the comment message
  *         username:
  *           type: string
+ *           description: The username of the person leaving the comment
  *         comment:
  *           type: string
+ *           description: The comment left by the user
  *         article:
+ *           type: string
+ *           description: The id of the article the comment is associated with
  *         createdAt:
  *           type: string
  *           format: date
- *           description: The date for the message
+ *           description: The date the comment was created
  */
 
 const commentSchema = mongoose.Schema({
