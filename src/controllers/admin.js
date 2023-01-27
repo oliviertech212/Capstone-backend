@@ -1,5 +1,4 @@
 import UserSignup from "../db_models/User_model";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 class AdminController {
@@ -23,65 +22,26 @@ class AdminController {
     }
   }
 
-  static async login(req, res) {
+  static async getAllUsers(req, res) {
     try {
-      // Find the user in the database
-      const user = await UserSignup.findOne({ username: req.body.username });
-      if (!user) {
-        return res.status(401).json({ message: "User not found" });
-      }
-
-      // Compare password
-      const isMatched = await bcrypt.compare(req.body.password, user.password);
-      if (!isMatched) {
-        return res.status(401).json({ message: "Incorrect password" });
-      }
-      console.log("ismatched", isMatched);
-      // If authentication is successful, generate a JWT token
-      const token = jwt.sign({ id: user._id }, process.env.MY_SCRET, {
-        expiresIn: "1d",
-      });
-      //       const decoded = jwt.verify(token, process.env.SECRET);
-      // expect(decoded.username).to.be.equal("oliviertech27@gmail.com");
-      return res.json({
-        auth: true,
-        token,
-      });
+      const users = await UserSignup.find();
+      res.status(200).json({ status: "success", users });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  // Example of a protected route that requires authentication and authorization
-  // Example of a protected route that requires authentication and authorization
-  static getProfile = async (req, res) => {
+  static async deleteUser(req, res) {
     try {
-      // Get the JWT from the request headers
-      const token = req.headers.authorization;
-      // Verify the JWT
-      const decoded = jwt.verify(token, process.env.MY_SCRET);
-      // Find the user by the userId in the JWT's payload
-      const user = await UserSignup.findOne({ _id: decoded.id });
-      // Send the user's information in the response
-      res.send(user);
-      console.log(decoded);
+      const user = await UserSignup.findByIdAndDelete(req.params.id);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.status(200).json({ status: "success", message: "User deleted" });
     } catch (error) {
-      res.status(401).send({ error: "Unauthorized" });
+      res.status(500).json({ message: error.message });
     }
-  };
-
-  static authenticat = (req, res, next) => {
-    try {
-      // Get the JWT from the request headers
-      const token = req.headers.authorization;
-      // Verify the JWT
-      const decoded = jwt.verify(token, process.env.MY_SCRET);
-      req.user = decoded;
-      next();
-    } catch (error) {
-      res.status(401).send({ error: "Unauthorized" });
-    }
-  };
+  }
 }
 
 export default AdminController;

@@ -24,7 +24,7 @@ import mongoose from "mongoose";
  *         comments:
  *            type: array
  *            items:
- *             $ref: '#/components/schemas/Comment'
+ *             $ref: '#/components/schemas/commentmessages'
  *         createdAt:
  *           type: string
  *           format: date

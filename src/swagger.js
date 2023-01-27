@@ -8,22 +8,24 @@ const options = {
       version: "1.0.0",
       description: "capstone backend Apis",
       contact: {
-        name: "olivier",
+        name: "oliviertech",
         email: "oliviertech27@gmail.com",
-        url: "dfggggggggggggdff",
+        url: "https://deploy-preview-1--olivier-tech.netlify.app",
       },
     },
     servers: [
       {
-        url: "http://localhost:8000",
+        url: "https://capstonebackendoliviertech27.onrender.com/",
       },
     ],
     components: {
       securitySchemes: {
-        bearerAuth: {
+        BearerAuth: {
           type: "http",
           scheme: "bearer",
           bearerFormat: "JWT",
+          name: "Authorization",
+          in: "header",
         },
       },
     },
