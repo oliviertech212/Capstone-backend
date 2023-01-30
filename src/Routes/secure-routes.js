@@ -51,7 +51,7 @@ securerouter.post("/admin", admin, AdminController.createadmin);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/User'
+ *                 $ref: '#/components/schemas/signup'
  *       401:
  *         description: Unauthorized
  */
@@ -83,7 +83,12 @@ securerouter.get("/users", admin, AdminController.getAllUsers);
  *         description: User not found
  */
 
-securerouter.delete("/users/:userId", admin, AdminController.deleteUser);
+securerouter.delete(
+  "/users/:userId",
+  UserController.authenticat,
+  admin,
+  AdminController.deleteUser
+);
 
 /**
  * @swagger
