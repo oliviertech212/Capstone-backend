@@ -15,7 +15,7 @@ class UserController {
       //save user to the database
       const savedUser = await newUser.save();
       req.user = savedUser;
-      res.status(201).json(savedUser);
+      res.status(201).json({ user: savedUser });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -63,7 +63,8 @@ class UserController {
       const user = await UserSignup.findOne({ _id: decoded.id });
       // Send the user's information in the response
       res.send(user);
-      console.log(decoded);
+      // console.log(user);
+      // console.log(decoded);
     } catch (error) {
       res.status(401).send({ error: "Unauthorized" });
     }
