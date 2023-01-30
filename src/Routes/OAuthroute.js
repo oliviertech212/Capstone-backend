@@ -11,6 +11,8 @@ const OAuth_Route = Express.Router();
  *     tags:
  *       - OAuth
  *     summary: Authenticate with Google
+ *     security:
+ *       - OAuth2: [read, write, admin]
  *     responses:
  *       302:
  *         description: Redirect to Google's authentication page

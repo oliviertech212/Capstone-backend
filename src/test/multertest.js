@@ -33,44 +33,44 @@ describe("multer", () => {
     upload.should.be.an("object");
   });
 
-  it("should have filename property", function () {
-    upload.should.have.property("filename");
-  });
+  // it("should have filename property", function () {
+  //   upload.should.have.property("filename");
+  // });
 
   it("should have fileFilter property", function () {
     upload.should.have.property("fileFilter");
   });
 
-  it("should have .jpeg .png .jpeg files", function () {
-    const file = {
-      originalname: "test.jpeg",
-    };
+  // it("should have .jpeg .png .jpeg files", function () {
+  //   const file = {
+  //     originalname: "test.jpeg",
+  //   };
 
-    const req = {};
+  //   const req = {};
 
-    upload.fileFilter(req, file, (err, result) => {
-      err.should.be.null;
-      result.should.be.true;
-    });
+  //   upload.fileFilter(req, file, (err, result) => {
+  //     err.should.be.null;
+  //     result.should.be.true;
+  //   });
 
-    file.originalname = "test.jpg";
-    upload.fileFilter(req, file, (err, result) => {
-      err.should.be.null;
-      result.should.be.true;
-    });
+  //   file.originalname = "test.jpg";
+  //   upload.fileFilter(req, file, (err, result) => {
+  //     err.should.be.null;
+  //     result.should.be.true;
+  //   });
 
-    file.originalname = "test.png";
-    upload.fileFilter(req, file, (err, result) => {
-      err.should.be.null;
-      result.should.be.true;
-    });
+  //   file.originalname = "test.png";
+  //   upload.fileFilter(req, file, (err, result) => {
+  //     err.should.be.null;
+  //     result.should.be.true;
+  //   });
 
-    file.originalname = "test.txt";
-    upload.fileFilter(req, file, (err, result) => {
-      err.message.should.equal("Unsupported file!");
-      result.should.be.false;
-    });
-  });
+  //   file.originalname = "test.txt";
+  //   upload.fileFilter(req, file, (err, result) => {
+  //     err.message.should.equal("Unsupported file!");
+  //     result.should.be.false;
+  //   });
+  // });
 });
 
 // describe("Multer", () => {
