@@ -107,7 +107,7 @@ router.post(
  *         description: Bad request
  */
 
-router.get("/getall", UserController.authenticat, async (req, res) => {
+router.get("/getall", admin, async (req, res) => {
   try {
     const contact = await User.find({});
     res.status(200).json({ message: contact });
@@ -216,8 +216,14 @@ router.get("/getOne/:id", admin, async (req, res) => {
 router.delete("/delete/:id", admin, async (req, res) => {
   try {
     const id = req.params.id;
-    const data = await User.findByIdAndDelete(id);
-    res.send(`Document with ${data.name} has been deleted..`);
+
+    const result = await User.deleteOne({ _id: id });
+
+    res
+      .status(204)
+
+      .json({ status: "success", deletedCount: result.deletedCount });
+    // console.log(result.deletedCount);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

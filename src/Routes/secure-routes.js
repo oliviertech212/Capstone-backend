@@ -4,7 +4,6 @@ const securerouter = express.Router();
 
 import { admin } from "../middleware/adminaccess";
 import UserController from "../controllers/User_controller";
-console.log(admin);
 
 /**
  * @swagger
@@ -85,7 +84,7 @@ securerouter.get("/users", admin, AdminController.getAllUsers);
 
 securerouter.delete(
   "/users/:userId",
-  UserController.authenticat,
+  // UserController.authenticat,
   admin,
   AdminController.deleteUser
 );

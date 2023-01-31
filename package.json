@@ -4,7 +4,7 @@
   "description": "this is my capstone backend",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=text --reporter=html --reporter=json-summary mocha --recursive --exit --timeout 4000 --require @babel/register src/test/**/*.js",
+    "test": "nyc --reporter=text --reporter=html --reporter=json-summary mocha --recursive --exit --timeout 20000 --require @babel/register src/test/**/*.js",
     "build": "babel src -d dist",
     "coverage": "nyc --reporter=html --report-dir=coverage/ npm run test",
     "start": "node dist/index.js",

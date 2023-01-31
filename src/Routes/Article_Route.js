@@ -133,31 +133,35 @@ const Article_Route = express.Router();
 
 Article_Route.post(
   "/post",
-  UserController.authenticat,
+  // UserController.authenticat,
+  admin,
   Article_validation,
   upload.single("image"),
   Articlecontroller.create
 );
 Article_Route.get(
   "/getall",
-  UserController.authenticat,
+  // UserController.authenticat,
   Articlecontroller.getAll
 );
 Article_Route.get(
   "/getOne/:id",
-  UserController.authenticat,
+  // UserController.authenticat,
+  admin,
   Articlecontroller.getOne
 );
 Article_Route.put(
   "/update/:id",
-  UserController.authenticat,
+  // UserController.authenticat,
+  admin,
   Article_validation,
   upload.single("image"),
   Articlecontroller.update
 );
 Article_Route.delete(
   "/delete/:id",
-  UserController.authenticat,
+  // UserController.authenticat,
+  admin,
   Articlecontroller.delete
 );
 

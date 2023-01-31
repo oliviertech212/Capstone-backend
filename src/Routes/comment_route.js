@@ -116,7 +116,11 @@ Comment_Route.post(
   commentValidation,
   CommentController.create
 );
-Comment_Route.get("/getall/comments", admin, CommentController.getAll);
+Comment_Route.get(
+  "/getall/comments",
+  UserController.authenticat,
+  CommentController.getAll
+);
 
 Comment_Route.delete("/:id/delete", admin, CommentController.delete);
 
