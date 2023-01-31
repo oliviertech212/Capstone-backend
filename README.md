@@ -1,4 +1,4 @@
-# Capstone-backend ![check-code-coverage](https://img.shields.io/badge/code--coverage-56.91%25-red)
+# Capstone-backend ![check-code-coverage](https://img.shields.io/badge/code--coverage-89.25%25-green)
 
 # Description
 

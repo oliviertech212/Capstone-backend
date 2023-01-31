@@ -22,8 +22,8 @@ export const admin = async (req, res, next) => {
         .status(401)
         .json({ status: "error", message: "User not found or not admin" });
     }
-    console.log(user, "adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
-    console.log(token);
+    // console.log(user, "adminnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+    // console.log(token);
 
     next();
   } catch (error) {
