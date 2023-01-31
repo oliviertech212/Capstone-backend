@@ -1,11 +1,8 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../index";
-import Article from "../db_models/Article_model";
 import UserSignup from "../db_models/User_model";
 import bcrypt from "bcrypt";
-
-import request from "supertest";
 
 // assertion style
 chai.should();
