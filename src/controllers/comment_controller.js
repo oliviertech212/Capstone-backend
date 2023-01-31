@@ -3,18 +3,6 @@ import Comment from "../db_models/comment_model";
 // import { Model } from "mongoose";
 
 class CommentController {
-  // static  async create(req,res){
-  //     try{
-  //         const cmt=await Comment.create(req.body);
-
-  //         res.status(201).json({cmt});
-  //         console.log("comment sent");
-  //     }catch{
-  //         // res.status(400).json({ error: error.message });
-  //         console.log("coment not sent");
-  //     }
-  // }
-
   static async create(req, res) {
     try {
       const article = await Article.findById(req.params.id);
@@ -51,35 +39,34 @@ class CommentController {
   static async getAll(req, res) {
     try {
       const cmt = await Comment.find();
-      res.status(201).json({ cmt });
+      res.status(200).json({ cmt });
     } catch {
       res.status(400).json({ error: error.message });
       console.log("can not create article");
     }
   }
-
-  static async getOne(req, res) {
-    try {
-      const id = req.params.id;
-      const cmt = await Comment.findById(id);
-      res.status(201).json({ cmt });
-    } catch {
-      res.status(400).json({ error: error.message });
-      console.log("can not create article");
-    }
-  }
-
   static async delete(req, res) {
     try {
       const id = req.params.id;
 
       const result = await Comment.deleteOne({ id });
 
-      res.status(200).json({ status: "success", deleted: result });
+      res.status(404).json({ status: "success", deleted: result });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
   }
+
+  // static async getOne(req, res) {
+  //   try {
+  //     const id = req.params.id;
+  //     const cmt = await Comment.findById(id);
+  //     res.status(201).json({ cmt });
+  //   } catch {
+  //     res.status(400).json({ error: error.message });
+  //     console.log("can not create article");
+  //   }
+  // }
 }
 
 export default CommentController;

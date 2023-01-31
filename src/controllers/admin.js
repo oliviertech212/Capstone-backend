@@ -33,13 +33,17 @@ class AdminController {
 
   static async deleteUser(req, res) {
     try {
-      const user = await UserSignup.findByIdAndDelete(req.params.id);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      res.status(204).json({ status: "success", message: "User deleted" });
+      const id = req.params.id;
+
+      const result = await UserSignup.deleteOne({ _id: id });
+
+      res
+        .status(204)
+
+        .json({ status: "success", deletedCount: result.deletedCount });
+      console.log(result.deletedCount);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.status(400).json({ message: error.message });
     }
   }
 }

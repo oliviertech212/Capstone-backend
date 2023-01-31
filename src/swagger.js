@@ -15,7 +15,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://capstonebackendoliviertech27.onrender.com/",
+        url: "https://expensive-newt-tiara.cyclic.app/",
       },
     ],
     components: {

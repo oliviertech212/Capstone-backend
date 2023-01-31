@@ -47,11 +47,16 @@ class Articlecontroller {
     try {
       const id = req.params.id;
       const findblog = await Article.findOne({ id });
-      console.log(findblog);
+      // console.log(findblog);
       await cloudinary.uploader.destroy(findblog.image);
       const result = await cloudinary.uploader.upload(req.file.path);
-      console.log(result);
+      // console.log(result);
       // const updatedData = req.body;
+      console.log(
+        "update blog hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh ",
+        result.secure_url,
+        req.body
+      );
       const options = { new: true };
       const updateblog = await Article.findByIdAndUpdate(
         id,
@@ -69,7 +74,7 @@ class Articlecontroller {
       // await result.save();
       res.status(200).json({ status: "success", data: updateblog });
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ status: "fail", message: error.message });
     }
 
     // try {
@@ -98,9 +103,13 @@ class Articlecontroller {
     try {
       const id = req.params.id;
 
-      const result = await Article.deleteOne({ id });
+      const result = await Article.deleteOne({ _id: id });
 
-      res.status(200).json({ status: "success", deleted: result });
+      res
+        .status(204)
+
+        .json({ status: "success", deletedCount: result.deletedCount });
+      console.log(result.deletedCount);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

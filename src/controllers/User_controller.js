@@ -34,7 +34,7 @@ class UserController {
       if (!isMatched) {
         return res.status(401).json({ message: "Incorrect password" });
       }
-      console.log("ismatched", isMatched);
+      // console.log("ismatched", isMatched);
       // If authentication is successful, generate a JWT token
       const token = jwt.sign({ id: user._id }, process.env.MY_SCRET, {
         expiresIn: "1d",
