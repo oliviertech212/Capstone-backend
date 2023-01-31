@@ -1,4 +1,4 @@
-# Capstone-backend ![check-code-coverage](https://img.shields.io/badge/code--coverage-89.25%25-green)
+# Capstone-backend ![check-code-coverage](https://img.shields.io/badge/code--coverage-89.25%25-green) <a href="https://codeclimate.com/github/oliviertech212/Capstone-backend/maintainability"><img src="https://api.codeclimate.com/v1/badges/a70317034a946ad08f5d/maintainability" /></a>
 
 # Description
 
@@ -10,6 +10,7 @@ it contain both APIs endpoint that will allow CRUD operations
 - Package manage: NPM
 - Environment: Nodejs
 - Database: mongobd
+
 # Requirement & installation steps
 
 - you nee the following to be able to run the application
