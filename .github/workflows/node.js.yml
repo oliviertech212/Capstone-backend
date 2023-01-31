@@ -16,7 +16,7 @@ env:
       API_SECRET: ${{secrets.API_SECRET}}
       MY_SCRET: ${{secrets.MY_SCRET}}
       CLIENT_ID: ${{secrets.CLIENT_ID}}
-      CLIENT_SECRET: ${{secrets.CLIENT_SECRET}
+      CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
 
 jobs:
   build:
