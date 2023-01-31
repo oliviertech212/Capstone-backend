@@ -244,7 +244,7 @@ describe("user APi", () => {
             password: "oliviertech",
           });
           let id = testUser._id;
-          console.log("hjjjjjjjjjjjjjjjjjjjjjjjjj", id);
+          // console.log("hjjjjjjjjjjjjjjjjjjjjjjjjj", id);
           await testUser.save();
 
           // Send a DELETE request to the /admin/users/:userId endpoint with the test user's ID
