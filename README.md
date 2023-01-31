@@ -10,7 +10,6 @@ it contain both APIs endpoint that will allow CRUD operations
 - Package manage: NPM
 - Environment: Nodejs
 - Database: mongobd
-
 # Requirement & installation steps
 
 - you nee the following to be able to run the application
