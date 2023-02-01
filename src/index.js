@@ -53,7 +53,7 @@ app.use("/adm", User_roure);
 app.use("/", OAuth_Route);
 
 // swagger
-app.use("/api-docs", Swaggerui.serve, Swaggerui.setup(document));
+app.use("/swaggerapi-docs", Swaggerui.serve, Swaggerui.setup(document));
 
 app.use((req, res) => {
   res.json({ success: "error", message: "route not found" });
