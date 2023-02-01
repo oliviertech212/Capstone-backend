@@ -17,6 +17,9 @@ const options = {
       {
         url: "https://expensive-newt-tiara.cyclic.app/",
       },
+      {
+        url: "http://localhost:8000/",
+      },
     ],
     components: {
       securitySchemes: {
