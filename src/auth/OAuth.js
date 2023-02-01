@@ -8,14 +8,18 @@ import UserSignup from "../db_models/User_model";
 
 dotenv.config();
 
+console.log("CLIENT_ID:", process.env.CLIENT_ID_GOOGLE);
+console.log("CLIENT_SECRET:", process.env.CLIENT_SECRET);
+
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.CLIENT_ID,
+      clientID: process.env.CLIENT_ID_GOOGLE,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "https://localhost:8000/auth/google/Capstone",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
+
     function (accessToken, refreshToken, profile, cb) {
       UserSignup.findOrCreate({ googleId: profile.id }, function (err, user) {
         return cb(err, user);

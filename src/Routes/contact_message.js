@@ -30,7 +30,7 @@ const router = Express.Router();
  *       - contact-message
  *     summary: create a post
  *     security:
- *        - bearerAuth: []
+ *        - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -72,7 +72,7 @@ router.post(
 //  *       - contact-message
 //  *     summary: Get all post
 //  *     security:
-//  *       - bearerAuth: []
+//  *       - BearerAuth: []
 //  *     responses:
 //  *       "200":
 //  *         description: Successfully retrieved all posts
@@ -93,7 +93,7 @@ router.post(
  *       - contact-message
  *     summary: Get all post
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       "200":
  *         description: Successfully retrieved all posts
@@ -154,7 +154,7 @@ router.get("/getall", admin, async (req, res) => {
  *       - contact-message
  *     summary: Get a single post by ID
  *     security:
- *        - bearerAuth: []
+ *        - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -192,7 +192,7 @@ router.get("/getOne/:id", admin, async (req, res) => {
  *       - contact-message
  *     summary: Delete a single post by ID
  *     security:
- *         - bearerAuth: []
+ *         - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
