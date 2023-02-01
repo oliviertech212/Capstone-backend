@@ -9,14 +9,14 @@ on:
   pull_request:
     branches: [ "main" ]
 env: 
-      PORT: ${{ secrets.PORT }}
-      DB: ${{secrets.DB}}
-      NAME: ${{secrets.NAME}}
-      API_KEY: ${{secrets.API_KEY}}
-      API_SECRET: ${{secrets.API_SECRET}}
-      MY_SCRET: ${{secrets.MY_SCRET}}
-      CLIENT_ID: ${{secrets.CLIENT_ID}}
-      CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
+  PORT: ${{ secrets.PORT }}
+  DB: ${{secrets.DB}}
+  NAME: ${{secrets.NAME}}
+  API_KEY: ${{secrets.API_KEY}}
+  API_SECRET: ${{secrets.API_SECRET}}
+  MY_SCRET: ${{secrets.MY_SCRET}}
+  CLIENT_ID: ${{secrets.CLIENT_ID}}
+  CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
