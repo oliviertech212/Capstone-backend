@@ -12,11 +12,10 @@ dotenv.config();
 console.log("CLIENT_ID:", process.env.CLIENT_ID_GOOGLE);
 console.log("CLIENT_SECRET:", process.env.CLIENT_SECRET);
 
-
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.CLIENT_ID,
+      clientID: process.env.CLIENT_ID_GOOGLE,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "https://localhost:8000/auth/google/Capstone",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
