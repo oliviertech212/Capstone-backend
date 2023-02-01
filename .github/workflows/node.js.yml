@@ -10,12 +10,12 @@ on:
     branches: [ "main" ]
 env: 
   PORT: ${{ secrets.PORT }}
-  DB: ${{secrets.DB}}
+  DATABASE: ${{secrets.DATABASE}}
   NAME: ${{secrets.NAME}}
   API_KEY: ${{secrets.API_KEY}}
   API_SECRET: ${{secrets.API_SECRET}}
   MY_SCRET: ${{secrets.MY_SCRET}}
-  CLIENT_ID: ${{secrets.CLIENT_ID}}
+  CLIENT_ID_GOOGLE: ${{secrets.CLIENT_ID_GOOGLE}}
   CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
 
 jobs:
