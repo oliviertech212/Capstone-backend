@@ -20,7 +20,7 @@ import Swaggerui from "swagger-ui-express";
 import document from "./swagger";
 
 const app = Express();
-app.use(cors());
+app.use(cors({ origin: "*", methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }));
 app.use(Express.json());
 
 dotenv.config();
@@ -34,6 +34,9 @@ app.listen(port, () => {
 app.use(bodyParser.urlencoded({ extended: false }));
 // let use route
 app.use("/contact", router);
+
+// parse application/json
+app.use(bodyParser.json());
 
 // routes for Article
 app.use("/articles", Article_Route);

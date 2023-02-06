@@ -15,6 +15,10 @@ class UserController {
       //save user to the database
       const savedUser = await newUser.save();
       req.user = savedUser;
+
+      //  fetch api
+      res.set("Content-Type", "application/json");
+
       res.status(201).json({ user: savedUser });
     } catch (error) {
       res.status(500).json({ message: error.message });

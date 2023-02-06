@@ -1,4 +1,4 @@
-# Capstone-backend ![example workflow](https://github.com/oliviertech212/Capstone-backend/actions/workflows/node.js.yml/badge.svg) ![check-code-coverage](https://img.shields.io/badge/code--coverage-89.25%25-green) <a href="https://codeclimate.com/github/oliviertech212/Capstone-backend/maintainability"><img src="https://api.codeclimate.com/v1/badges/a70317034a946ad08f5d/maintainability" /></a>
+# Capstone-backend ![example workflow](https://github.com/oliviertech212/Capstone-backend/actions/workflows/node.js.yml/badge.svg) ![check-code-coverage](https://img.shields.io/badge/code--coverage-88.82%25-green) <a href="https://codeclimate.com/github/oliviertech212/Capstone-backend/maintainability"><img src="https://api.codeclimate.com/v1/badges/a70317034a946ad08f5d/maintainability" /></a>
 
 # Description
 

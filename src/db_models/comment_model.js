@@ -52,21 +52,24 @@ import mongoose from "mongoose";
  *           description: The date the comment was created
  */
 
-const commentSchema = mongoose.Schema({
-  username: {
-    type: String,
-    // required: [true, "please your email is required"],
+const commentSchema = mongoose.Schema(
+  {
+    username: {
+      type: String,
+      // required: [true, "please your email is required"],
+    },
+    comment: {
+      type: String,
+      // required: [true, "please enter your comment"],
+    },
+    article: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Article",
+      required: true,
+    },
   },
-  comment: {
-    type: String,
-    // required: [true, "please enter your comment"],
-  },
-  article: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Article",
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
 const Comment = mongoose.model("Comment", commentSchema);
 
