@@ -28,6 +28,17 @@ OAuth_Route.get(
   })
 );
 
+OAuth_Route.get(
+  "/auth/google/Capstone",
+  passport.authenticate("google", { failureRedirect: "/auth/google/failure" }),
+  function (req, res) {
+    console.log(res);
+    // success, generate a JWT and send it as a response
+    const token = jwt.sign({ user: req.user }, secretKey, { expiresIn: "1h" });
+    res.json({ token });
+  }
+);
+
 /**
  * @swagger
  * /auth/google/failure:
