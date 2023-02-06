@@ -54,6 +54,15 @@ app.use("/adm", User_roure);
 
 // oauth with google
 app.use("/", OAuth_Route);
+// Access-Control-Allow-Origin" for google oauth
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://olivier-tech.netlify.app");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 // swagger
 app.use("/swaggerapi-docs", Swaggerui.serve, Swaggerui.setup(document));
