@@ -49,9 +49,10 @@ class CommentController {
     try {
       const id = req.params.id;
 
-      const result = await Comment.deleteOne({ id });
+      const result = await Comment.deleteOne({ _id: id });
 
       res.status(404).json({ status: "success", deleted: result });
+      console.log("deleted", result);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
