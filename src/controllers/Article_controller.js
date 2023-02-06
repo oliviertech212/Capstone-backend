@@ -14,6 +14,12 @@ class Articlecontroller {
         title: req.body.title,
       });
       await article.save();
+      // set valid json fro fetch api
+      res.setHeader("Content-Type", "application/json");
+
+      //  fetch api
+      // res.setHeaders("Content-Type", "application/json");
+
       res.status(200).json({ status: "success", article: article });
       console.log("article now is created");
     } catch (error) {

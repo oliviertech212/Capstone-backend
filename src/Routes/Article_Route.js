@@ -146,8 +146,8 @@ Article_Route.get(
 );
 Article_Route.get(
   "/getOne/:id",
-  // UserController.authenticat,
-  admin,
+  UserController.authenticat,
+  // admin,
   Articlecontroller.getOne
 );
 Article_Route.put(
