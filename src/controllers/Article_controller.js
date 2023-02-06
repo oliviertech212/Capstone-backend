@@ -41,7 +41,7 @@ class Articlecontroller {
   static async getOne(req, res) {
     try {
       const id = req.params.id;
-      const article = await Article.findById(id);
+      const article = await Article.findById({ _id: id });
       res.status(200).json({ status: "success", article: article });
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -52,17 +52,17 @@ class Articlecontroller {
   static async update(req, res) {
     try {
       const id = req.params.id;
-      const findblog = await Article.findOne({ id });
+      const findblog = await Article.findOne({ _id: id });
       // console.log(findblog);
       await cloudinary.uploader.destroy(findblog.image);
       const result = await cloudinary.uploader.upload(req.file.path);
       // console.log(result);
       // const updatedData = req.body;
-      console.log(
-        "update blog hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh ",
-        result.secure_url,
-        req.body
-      );
+      // console.log(
+      //   "update blog hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh ",
+      //   result.secure_url,
+      //   req.body
+      // );
       const options = { new: true };
       const updateblog = await Article.findByIdAndUpdate(
         id,
