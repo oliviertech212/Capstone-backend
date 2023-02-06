@@ -67,6 +67,16 @@ app.use(function (req, res, next) {
 // swagger
 app.use("/swaggerapi-docs", Swaggerui.serve, Swaggerui.setup(document));
 
+// Access-Control-Allow-Origin" for google oauth
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://olivier-tech.netlify.app");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use((req, res) => {
   res.json({ success: "error", message: "route not found" });
 });
