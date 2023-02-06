@@ -7,6 +7,9 @@ import UserController from "../controllers/User_controller";
 import { admin } from "../middleware/adminaccess";
 import { findUserById } from "../middleware/adminaccess";
 import AdminController from "../controllers/admin";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const Article_Route = express.Router();
 
@@ -166,3 +169,4 @@ Article_Route.delete(
 );
 
 export default Article_Route;
+

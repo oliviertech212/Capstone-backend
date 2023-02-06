@@ -14,9 +14,9 @@ const options = {
       },
     },
     servers: [
-      // {
-      //   url: "https://expensive-newt-tiara.cyclic.app/",
-      // },
+      {
+        url: "https://expensive-newt-tiara.cyclic.app/",
+      },
       {
         url: "http://localhost:8000/",
       },
